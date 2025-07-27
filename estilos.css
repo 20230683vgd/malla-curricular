@@ -1,1 +1,206 @@
+/* --- Variables de Color y Estilos Globales --- */
+:root {
+    --color-fondo: #f8f9fa;
+    --color-texto: #343a40;
+    --color-ramo-base: #ffffff;
+    --color-ramo-aprobado: #d4edda;
+    --color-ramo-bloqueado: #e9ecef;
+    --color-ramo-borde: #dee2e6;
+    --color-sombra: rgba(0, 0, 0, 0.05);
+    --color-acento: #007bff;
+    --fuente-principal: 'Poppins', sans-serif;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+.container {
+    width: 95%;
+    max-width: 1800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* --- Encabezado y Contador --- */
+.header-container {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-ramo-base);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+    margin-bottom: 30px;
+}
+
+.header-container h1 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.info-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.credits-counter p {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+#creditos-aprobados {
+    background-color: var(--color-acento);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 1.1em;
+}
+
+/* --- Leyenda de Colores --- */
+.legend {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9em;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--color-ramo-borde);
+}
+
+.color-box.por-aprobar { background-color: var(--color-ramo-base); }
+.color-box.aprobado { background-color: var(--color-ramo-aprobado); }
+.color-box.bloqueado { background-color: var(--color-ramo-bloqueado); }
+
+/* --- Estructura de la Malla Curricular --- */
+#malla-curricular {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    padding-bottom: 20px;
+}
+
+.semestre {
+    flex: 0 0 280px; /* Evita que las columnas se encojan */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f1f3f5;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.semestre-titulo {
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-ramo-borde);
+    margin-bottom: 5px;
+}
+
+/* --- Estilos de los Ramos --- */
+.ramo {
+    background-color: var(--color-ramo-base);
+    border: 1px solid var(--color-ramo-borde);
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px var(--color-sombra);
+}
+
+.ramo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ramo-nombre {
+    font-size: 0.9em;
+    font-weight: 400;
+    flex-grow: 1;
+}
+
+.ramo-creditos {
+    font-size: 0.8em;
+    font-weight: 600;
+    background-color: #e9ecef;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+/* --- Estados de los Ramos --- */
+.ramo.aprobado {
+    background-color: var(--color-ramo-aprobado);
+    border-color: #a3cfbb;
+}
+
+.ramo.aprobado .ramo-nombre {
+    text-decoration: line-through;
+    color: #555;
+}
+
+.ramo.bloqueado {
+    background-color: var(--color-ramo-bloqueado);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.ramo.bloqueado:hover {
+    transform: none;
+    box-shadow: 0 2px 5px var(--color-sombra);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* --- Diseño Responsivo --- */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #malla-curricular {
+        /* En móvil, las columnas ya tienen un ancho fijo y se puede hacer scroll */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .semestre {
+        flex: 0 0 250px; /* Columnas un poco más angostas en móvil */
+    }
+    
+    .info-box {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
